@@ -1,3 +1,6 @@
+Types of Dependency Injection:
+1) Centralized: Manage dependency centrally!!!!
+
 A) How to inject dependency?
 1) Create a .ts file.
 2) create an interface and decalre a method in it
@@ -21,3 +24,31 @@ providers: [{
 
 8) If I want to change the way to log all I can do is got to the main.module.ts and change
 UseClass: ConsoleLogger
+
+
+
+2) Conditional Dependency: Client decides what dependency he/she wants to inject. Tokens are used.
+   a) Go to the appmain module and do this.
+      {provide: "1", useClass: FileLogger},
+      {provide: "2", useClass: ConsoleLogger},
+      {provide: "3", useClass: DbLogger}
+  b) We need to go to Customer component and access the dependency injection.
+  c) Import Injector import { Injector } from '@angular/core';
+  d) Go to the Constructor and do the following:
+     constructor(_injector: Injector) {
+            this.LogObj = _injector.get(1); //here we are calling the token from #2
+            this.LogObj.Log();
+        }
+
+/*Instead of hard coding all those loggers inside the providers in main module, we can create a
+collection of provides and inject that into the proivider*/
+/*
+//Creation:
+var providersCollection: any =[];
+providersCollection.push({provide: "1", useClass: DbLogger});
+providersCollection.push({provide: "2", useClass: ConsoleLogger});
+providersCollection.push({provide: BaseLogger, useClass: ConsoleLogger});
+
+//Injection
+providers:[providersCollection]
+*/

@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {Customer} from './CustomerApp.model';
-import {BaseLogger, ILogger} from '../Utility/CustomerApp.Logger';
+import {BaseLogger} from '../Utility/CustomerApp.Logger';
 
 @Component({
     templateUrl: './CustomerApp.CustomerView.html'
@@ -11,7 +11,8 @@ export class CustomerComponent {
     CustomerModels: Array<Customer> = new Array<Customer>();
     LogObj: BaseLogger = null;
 
-    constructor(_logger: BaseLogger) {
+    constructor(_injector: Injector) {
+        this.LogObj = _injector.get(1);
         this.LogObj.Log();
     }
 
