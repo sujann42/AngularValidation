@@ -52,3 +52,11 @@ providersCollection.push({provide: BaseLogger, useClass: ConsoleLogger});
 //Injection
 providers:[providersCollection]
 */
+
+Reusable Component or User Control: Interacts with the html page.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1) check assets/image folder for details:
+2) Input: Get data from page to user control
+3) Output: Data from User control to the page.
+4) Output is sent from the UI to the page through event. Click, Right click and so on.
+5) Input, Output and Event Emiiters: Interaction between page and UI component in Angular.
