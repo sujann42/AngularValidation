@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router"
 import { MasterPageComponent } from './CustomerApp.MasterPageComponent';
 import { HomeComponent } from './CustomerApp.HomeComponent';
 import { MainRoutes } from '../Routing/CustomerApp.MainRouting';
+import { BaseLogger, DbLogger } from '../Utility/CustomerApp.Logger';
 @NgModule({
   declarations: [
       MasterPageComponent,
@@ -14,7 +15,10 @@ import { MainRoutes } from '../Routing/CustomerApp.MainRouting';
     RouterModule.forRoot(MainRoutes),
     BrowserModule,FormsModule
   ],
-  providers: [],
+  providers: [{
+      provide: BaseLogger,
+      useClass: DbLogger
+  }],
   bootstrap: [MasterPageComponent]
 })
 export class MainModule { }

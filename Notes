@@ -1,0 +1,23 @@
+A) How to inject dependency?
+1) Create a .ts file.
+2) create an interface and decalre a method in it
+3) create a base class and implement the interface on it
+4) create concrete classes and implement all the methods in the interface.
+5) Whereever you want to implement the logger or DI, inside constructor do this:
+export class CustomerComponent {
+      LogObj: BaseLogger = null;
+
+    constructor(_logger: BaseLogger) {
+        this.logObj = _logger;
+        this.LogObj.Log();
+    }
+
+6) Import all the concrete classes on the main.module.ts
+7) On the main module for (the whole app => main.module.ts) Under Provider do this:
+providers: [{
+      provide: BaseLogger,
+      useClass: DbLogger
+  }]
+
+8) If I want to change the way to log all I can do is got to the main.module.ts and change
+UseClass: ConsoleLogger
